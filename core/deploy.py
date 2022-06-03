@@ -187,7 +187,7 @@ def main():
         raise Exception("No GPU found, please run without --cuda")
 
     model = net.VGG16(args)
-    ckpt = torch.load(args.resume)
+    ckpt = torch.load(args.resume, encoding='latin1', map_location=torch.device('cpu'))
     if args.not_strict:
         model.load_state_dict(ckpt['state_dict'], strict=False)
     else:
